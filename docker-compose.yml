@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  jupyter:
+    image: jupyter/pyspark-notebook:spark-3.3.0
+    container_name: lakehouse-jupyter
+    user: root # Cần quyền root để cài thêm thư viện
+    ports:
+      - "8888:8888"
+      - "4040:4040"
+    volumes:
+      - ./notebooks:/home/jovyan/work/notebooks
+      - ./data:/home/jovyan/work/data
+      - ./delta_lake:/home/jovyan/work/delta_lake
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      # Quan trọng: Cấu hình Spark sử dụng đúng phiên bản Delta cho Spark 3.3.x
+      - PYSPARK_SUBMIT_ARGS=--packages io.delta:delta-core_2.12:2.1.0 pyspark-shell
+    mem_limit: 4g
+    # Cài đặt delta-spark ngay khi container khởi động
+    command: >
+      sh -c "pip install delta-spark==2.1.0 && 
+             start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''"
