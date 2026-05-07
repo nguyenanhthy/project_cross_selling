@@ -1,10 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useEffect, useMemo, useState } from "react";
-import NetworkGraph from "../../components/NetworkGraph";
 import LoadingSkeleton from "../../components/LoadingSkeleton";
 import { getCategories, getNetwork, getNeighbors, getTopNodes } from "../../lib/api";
+
+const NetworkGraph = dynamic(() => import("../../components/NetworkGraph"), {
+  ssr: false,
+});
 
 export default function NetworkPage() {
   const [mode, setMode] = useState("full");

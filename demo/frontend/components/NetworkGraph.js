@@ -1,11 +1,7 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
-
-const ForceGraph2D = dynamic(() => import("react-force-graph").then((mod) => mod.ForceGraph2D), {
-  ssr: false,
-});
+import ForceGraph2D from "react-force-graph-2d";
 
 const getColor = (value, min, max) => {
   if (max === min) return "#8b5cf6";

@@ -19,23 +19,3 @@ services:
     command: >
       sh -c "pip install delta-spark==2.1.0 && 
              start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''"
-
-  backend:
-    build: ./demo/backend
-    container_name: lakehouse-backend
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./delta_lake:/data/delta_lake
-    environment:
-      - DATA_PATH=/data/delta_lake/gold
-
-  frontend:
-    build: ./demo/frontend
-    container_name: lakehouse-frontend
-    ports:
-      - "3000:3000"
-    environment:
-      - NEXT_PUBLIC_API_URL=http://localhost:8000
-    depends_on:
-      - backend
