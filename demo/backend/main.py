@@ -22,7 +22,10 @@ def resolve_data_path() -> Path:
         return Path(env_path).resolve()
 
     resolved = Path(__file__).resolve()
-    root = resolved.parents[1] if len(resolved.parents) > 1 else resolved.parent
+    if len(resolved.parents) > 2:
+        root = resolved.parents[2]
+    else:
+        root = resolved.parent
     default_path = root / "delta_lake" / "gold"
     return default_path.resolve()
 
