@@ -40,3 +40,20 @@ export const getTopNodes = async (metric = "degree", limit = 10) =>
   handleResponse(
     await fetch(`${API_BASE}/network/top?metric=${metric}&limit=${limit}`)
   );
+
+export const getMultipleRecommendations = async (categories, topK = 3) => {
+  const results = await Promise.all(
+    categories.map((cat) => getRecommendations(cat, topK).catch(() => null))
+  );
+  const seen = new Set();
+  return results
+    .filter(Boolean)
+    .flatMap((r) => r.recommendations || [])
+    .filter((rec) => {
+      const key = rec.suggested_categories.join(",");
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .sort((a, b) => b.lift - a.lift);
+};
