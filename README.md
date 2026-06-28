@@ -2,44 +2,23 @@
 
 ## Cấu trúc thư mục
 Project_cross_selling/
-├── `.git/`
-├── `data/`
-│   ├── `olist_customers_dataset.csv`
-│   ├── `olist_geolocation_dataset.csv`
-│   ├── `olist_order_items_dataset.csv`
-│   ├── `olist_order_payments_dataset.csv`
-│   ├── `olist_order_reviews_dataset.csv`
-│   ├── `olist_orders_dataset.csv`
-│   ├── `olist_products_dataset.csv`
-│   ├── `olist_sellers_dataset.csv`
-│   └── `product_category_name_translation.csv`
-├── `delta_lake/`
-│   ├── `_checkpoints/`
-│   │   ├── `customers/`
-│   │   ├── `order_items/`
-│   │   ├── `orders/`
-│   │   ├── `products/`
-│   │   └── `translations/`
-│   ├── `bronze/`
-│   │   ├── `customers/`
-│   │   ├── `order_items/`
-│   │   ├── `orders/`
-│   │   ├── `products/`
-│   │   └── `translations/`
-│   └── `silver/`
-│       ├── `customers/`
-│       ├── `order_items/`
-│       ├── `orders/`
-│       └── `products/`
-├── `notebooks/`
-│   ├── `01_EDA.ipynb`
-│   ├── `02_bronze_layer.ipynb`
-│   ├── `03_silver_layer.ipynb`
-│   ├── `04_gold_layer.ipynb`
-│   └── `Nháp.ipynb`
-├── `docker-compose.yml`
-├── `olist_customers_dataset_part2.csv`
-└── `README.md`
+├── .git/
+├── data/
+├── delta_lake/
+│   ├── _checkpoints/
+│   ├── bronze/
+│   ├── silver/
+│   └── gold/
+├── notebooks/
+│   ├── 01_EDA.ipynb
+│   ├── 02_bronze_layer.ipynb
+│   ├── 03_silver_layer.ipynb
+│   ├── 04_gold_layer.ipynb
+│   ├── 05_mining.ipynb
+│   └── 06_network_analysis.ipynb
+├── demo/
+├── docker-compose.yml
+└── README.md
 
 ## Khởi động
 1. Mở terminal và chuyển đến thư mục `Project_cross_selling`.
